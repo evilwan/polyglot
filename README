@@ -17,7 +17,7 @@ SYNOPSIS
 
        polyglot make-book [-pgn inputfile] [-bin outputfile] [-max-ply ply]
        [-min-game games] [-min-score score] [-only-white] [-only-black]
-       [-uniform]
+       [-keepall] [-uniform]
 
        polyglot merge-book -in1 inputfile1 -in2 inputfile2 [-out outputfile]
 
@@ -181,6 +181,9 @@ OPTIONS
 
        -only-black
            Include only moves for black in the book.
+
+       -keepall
+           Include moves irrespective of their scoring.
 
        -uniform
            Set all weights to 1. In other words, all moves will be selected
