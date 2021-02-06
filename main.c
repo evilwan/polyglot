@@ -43,7 +43,7 @@ static const char * const Version = "1.4.70b";
 static const char * const HelpMessage = "\
 SYNTAX\n\
 * polyglot [configfile] [-noini] [-ec engine] [-ed enginedirectory] [-en enginename] [-log true/false] [-lf logfile] [-pg <name>=<value>]* [-uci <name>=<value>]*\n\
-* polyglot make-book [-pgn inputfile] [-bin outputfile] [-max-ply ply] [-min-game games] [-min-score score] [-only-white] [-only-black] [-uniform]\n\
+* polyglot make-book [-pgn inputfile] [-bin outputfile] [-max-ply ply] [-min-game games] [-min-score score] [-only-white] [-only-black] [-uniform] [-keepall]\n\
 * polyglot merge-book -in1 inputfile1 -in2 inputfile2 [-out outputfile]\n\
 * polyglot info-book [-bin inputfile] [-exact]\n\
 * polyglot dump-book [-bin inputfile] -color color [-out outputfile]\n\

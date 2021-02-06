@@ -84,6 +84,7 @@ typedef struct {
 
 static int MaxPly;
 static int MinGame;
+static bool KeepAll;
 static double MinScore;
 static bool RemoveWhite, RemoveBlack;
 static bool Uniform;
@@ -134,6 +135,7 @@ void book_make(int argc, char * argv[]) {
    MaxPly = 1024;
    MinGame = 3;
    MinScore = 0.0;
+   KeepAll = FALSE;
    RemoveWhite = FALSE;
    RemoveBlack = FALSE;
    Uniform = FALSE;
@@ -197,6 +199,10 @@ void book_make(int argc, char * argv[]) {
       } else if (my_string_equal(argv[i],"-uniform")) {
 
          Uniform = TRUE;
+
+      } else if (my_string_equal(argv[i],"-keepall")) {
+
+         KeepAll = TRUE;
 
       } else {
 
@@ -329,8 +335,10 @@ static void book_filter() {
 
    dst = 0;
 
-   for (src = 0; src < Book->size; src++) {
-      if (keep_entry(src)) Book->entry[dst++] = Book->entry[src];
+   if(!KeepAll) {
+     for (src = 0; src < Book->size; src++) {
+       if (keep_entry(src)) Book->entry[dst++] = Book->entry[src];
+     }
    }
 
    ASSERT(dst>=0&&dst<=Book->size);
