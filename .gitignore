@@ -8,7 +8,6 @@
 /polyglot
 /stamp-h1
 
-Makefile
 Makefile.in
 .deps
 *.o
