@@ -267,7 +267,6 @@ static void book_insert(const char file_name[]) {
    pgn_open(pgn,file_name);
 
    while (pgn_next_game(pgn)) {
-
       board_start(board);
       if (!strcmp(pgn->variant,"3Check")) {
          board->variant=Checks;
@@ -276,7 +275,7 @@ static void book_insert(const char file_name[]) {
       } else if (!strcmp(pgn->variant,"Horde")) {
          board->variant=Horde;
       }
-      if (strcmp(pgn->fen,"?")) {
+      if (pgn->fen[0] && strcmp(pgn->fen,"?")) {
          board_from_fen(board,pgn->fen);
       }
       ply = 0;
@@ -333,16 +332,17 @@ static void book_filter() {
 
    // entry loop
 
-   dst = 0;
+
 
    if(!KeepAll) {
+     dst = 0;
      for (src = 0; src < Book->size; src++) {
        if (keep_entry(src)) Book->entry[dst++] = Book->entry[src];
      }
-   }
 
-   ASSERT(dst>=0&&dst<=Book->size);
-   Book->size = dst;
+     ASSERT(dst>=0&&dst<=Book->size);
+     Book->size = dst;
+   }
 
    printf("%d entries.\n",Book->size);
 }
@@ -386,7 +386,6 @@ static void book_save(const char file_name[]) {
 
    for (pos = 0; pos < Book->size; pos++) {
 
-      ASSERT(keep_entry(pos));
       /* null keys are reserved for the header */
       if(Book->entry[pos].key!=U64(0x0)){
 	  write_integer(file,8,Book->entry[pos].key);

@@ -165,7 +165,9 @@ int piece_to_12(int piece) {
 // piece_from_12()
 
 int piece_from_12(int piece) {
-
+  if(!(piece>=0&&piece<12)) {
+    printf("~~~ piece_from_12() -- piece=%08x\n", piece);
+  }
    ASSERT(piece>=0&&piece<12);
 
    return PieceFrom12[piece];
